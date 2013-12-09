@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+
+    "name": "Easy Weather Tab",
+    "description": "A Chrome Tab extension based on http://weather.keepiteasy/net.",
+    "version": "1.0",
+
+    "permissions": [
+        "http://keepiteasy.net/"
+    ],
+    "chrome_url_overrides" : {
+        "newtab": "index.html"
+    }
+}
