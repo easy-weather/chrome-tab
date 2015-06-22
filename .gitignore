@@ -1,6 +1,2 @@
 node_modules/*
 .sass-cache/*
-
-public/*
-!public/css/fonts/*
-!public/js/_libs/js
