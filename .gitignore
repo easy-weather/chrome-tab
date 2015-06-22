@@ -3,4 +3,3 @@ node_modules/*
 *.pem
 *.crx
 .DS_Store
-public/assets/css/fluid.css
