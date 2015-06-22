@@ -1,6 +1,5 @@
-"use strict";
-
 module.exports = function(grunt) {
+   'use strict';
 
   // Project configuration.
   grunt.initConfig({
@@ -27,7 +26,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          sourcemap: false
+          sourcemap: "none"
         },
         files: {
           'public/assets/css/fluid.css': 'app/assets/css/style.scss'
@@ -57,12 +56,11 @@ module.exports = function(grunt) {
           'public/assets/js/_app.js': ['public/assets/js/init.js','public/assets/js/router.js'],
           'public/assets/js/_models.js': ['public/assets/js/models/app.js', 'public/assets/js/models/conditions.js', 'public/assets/js/models/forecast.js'],
           'public/assets/js/_collections.js': ['public/assets/js/collections/conditions.js', 'public/assets/js/collections/forecast.js'],
-          'public/assets/js/_libs.js': ['public/assets/js/libs/modernizr.custom.89661.js', 'public/assets/js/libs/json2.js', 
-            'public/assets/js/libs/jquery.js', 'public/assets/js/libs/underscore-min.js', 'public/assets/js/libs/backbone-min.js'],
+          'public/assets/js/_libs.js': ['assets/libs/modernizr.custom.89661.js', 'assets/libs/json2-min.js', 'assets/libs/jquery-min.js', 'assets/libs/underscore-min.js', 'assets/libs/backbone-min.js'],
         }
       }
     },
-    clean: ["public/assets/js/collections/", "public/assets/js/libs", "public/assets/js/models", "public/assets/js/views", "public/assets/js/init.js", "public/assets/js/router.js"]
+    clean: ["public/assets/js/collections/", "public/assets/js/models", "public/assets/js/views", "public/assets/js/init.js", "public/assets/js/router.js"]
   });
 
   grunt.registerTask('default', ['coffee', 'rubyHaml', 'sass', 'concat', 'clean']);

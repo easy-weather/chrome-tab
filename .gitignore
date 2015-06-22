@@ -1,2 +1,6 @@
 node_modules/*
 .sass-cache/*
+*.pem
+*.crx
+.DS_Store
+public/assets/css/fluid.css
