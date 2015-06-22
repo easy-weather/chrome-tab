@@ -1,6 +1,6 @@
 {
-  "name": "easy-weather",
-  "version": "1.0.0",
+  "name": "easy-weather=chrome-tab",
+  "version": "-.1.0",
   "description": "HTML5, Coffeescript, HAML, Backbone based weather app that utilizes geolocation to provide current weather conditions and forecasts.",
   "main": "app/assets/js/init.coffee",
   "scripts": {
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/easy-weather/web.git"
+    "url": "https://github.com/easy-weather/chrome-tab.git"
   },
   "author": "Jeffrey Hann <jeffhann@gmail.com> (jeffreyhann.ca)",
   "license": "GPL-V2",
   "bugs": {
-    "url": "https://github.com/easy-weather/web/issues"
+    "url": "https://github.com/easy-weather/chrome-tab/issues"
   },
   "homepage": "http://weather.keepiteasy.net",
   "dependencies": {
