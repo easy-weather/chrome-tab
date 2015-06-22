@@ -1,23 +1,23 @@
 WEATHER.Views.Map = Backbone.View.extend
   initialize: (options) ->
     @el = $(@el)
-    @template = _.template(WEATHER.Templates.Map)
+    @template = _.template(WEATHER.Templates.map)
 
   render: ->
     @el.html @template()
 
   postRender: ->
-    mapOptions =
+    mapoptions =
       zoom: 15
-      center: new google.maps.LatLng(@model.geoLocation.coords.latitude, @model.geoLocation.coords.longitude)
-      mapTypeId: google.maps.MapTypeId.SATELLITE
+      center: new google.maps.latlng(@model.geolocation.coords.latitude, @model.geolocation.coords.longitude)
+      maptypeid: google.maps.maptypeid.satellite
       draggable: false
-      zoomControl: false
+      zoomcontrol: false
       scrollwheel: false
-      panControl: false
-      streetViewControl: false
-      mapTypeControl: false
+      pancontrol: false
+      streetviewcontrol: false
+      maptypecontrol: false
 
-    map = new google.maps.Map(@el.find("#map")[0], mapOptions)
-    google.maps.event.addListenerOnce map, "idle", ->
+    map = new google.maps.map(@el.find("#map")[0], mapoptions)
+    google.maps.event.addlisteneronce map, "idle", ->
       $("#overlay").show()

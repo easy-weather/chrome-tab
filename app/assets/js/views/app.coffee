@@ -1,7 +1,7 @@
 WEATHER.Views.App = Backbone.View.extend
   initialize: (options) ->
     @el = $(@el)
-    @template = _.template(WEATHER.Templates.App)
+    @template = _.template(WEATHER.Templates.app)
     @appDelegate = options.appDelegate  if options.appDelegate
 
     if options.model
@@ -11,14 +11,6 @@ WEATHER.Views.App = Backbone.View.extend
         @positionAcquired()
 
   positionAcquired: ->
-    @mapView = new WEATHER.Views.Map(
-      model: @model
-      appDelegate: this
-    )
-    
-    @mapView.render()
-    $("body").append @mapView.el
-    @mapView.postRender()
 
   render: ->
     @el.html @template()

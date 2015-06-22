@@ -3,7 +3,7 @@ WEATHER.Views.Conditions = Backbone.View.extend(
 
   initialize: ->
     @el = $(@el)
-    @template = _.template(WEATHER.Templates.Conditions)
+    @template = _.template(WEATHER.Templates.conditions)
 
   render: ->
     conditions = @model.models[0].toJSON()
