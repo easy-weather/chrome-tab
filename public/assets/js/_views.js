@@ -15,7 +15,15 @@
         })(this));
       }
     },
-    positionAcquired: function() {},
+    positionAcquired: function() {
+      this.mapView = new WEATHER.Views.Map({
+        model: this.model,
+        appDelegate: this
+      });
+      this.mapView.render();
+      $("body").append(this.mapView.el);
+      return this.mapView.postRender();
+    },
     render: function() {
       this.el.html(this.template());
       if (this.model.activeView) {
@@ -113,22 +121,10 @@
       return this.el.html(this.template());
     },
     postRender: function() {
-      var map, mapoptions;
-      mapoptions = {
-        zoom: 15,
-        center: new google.maps.latlng(this.model.geolocation.coords.latitude, this.model.geolocation.coords.longitude),
-        maptypeid: google.maps.maptypeid.satellite,
-        draggable: false,
-        zoomcontrol: false,
-        scrollwheel: false,
-        pancontrol: false,
-        streetviewcontrol: false,
-        maptypecontrol: false
-      };
-      map = new google.maps.map(this.el.find("#map")[0], mapoptions);
-      return google.maps.event.addlisteneronce(map, "idle", function() {
-        return $("#overlay").show();
-      });
+      var apiKey;
+      apiKey = "AIzaSyBf1n3GL-Kv1e4He0qkluxKpiCfrOWYVvI";
+      $("#mapc").css("background-image", "url(https://maps.googleapis.com/maps/api/staticmap?center=" + this.model.geoLocation.coords.latitude + "," + this.model.geoLocation.coords.longitude + "&scale=2&maptype=satellite&size=640x640&zoom=15&key=" + apiKey + ")");
+      return $("#overlay").show();
     }
   });
 

@@ -402,8 +402,12 @@ article {
   display: none;
 }
 
-#map {
+#mapl,
+#mapc,
+#mapr {
   position: fixed !important;
+  background-size: cover;
+  background-repeat: no-repeat;
   z-index: 0;
   top: 0px;
   left: 0px;
@@ -412,6 +416,14 @@ article {
   -webkit-filter: sepia(75%);
   -moz-filter: sepia(75%);
   filter: sepia(75%);
+}
+
+#mapr {
+  display: none;
+}
+
+#mapr {
+  display: none;
 }
 
 @media screen and (max-width: 720px) {
