@@ -120,11 +120,52 @@
     render: function() {
       return this.el.html(this.template());
     },
-    postRender: function() {
-      var apiKey;
-      apiKey = "AIzaSyBf1n3GL-Kv1e4He0qkluxKpiCfrOWYVvI";
-      $("#mapc").css("background-image", "url(https://maps.googleapis.com/maps/api/staticmap?center=" + this.model.geoLocation.coords.latitude + "," + this.model.geoLocation.coords.longitude + "&scale=2&maptype=satellite&size=640x640&zoom=15&key=" + apiKey + ")");
+    convertImgToBase64URL: function(url, callback, outputFormat) {
+      var img;
+      img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.onload = function() {
+        var canvas, ctx, dataURL;
+        canvas = document.createElement('CANVAS');
+        ctx = canvas.getContext('2d');
+        canvas.height = this.height;
+        canvas.width = this.width;
+        ctx.drawImage(this, 0, 0);
+        dataURL = canvas.toDataURL(outputFormat || 'image/png');
+        callback(dataURL);
+        return canvas = null;
+      };
+      return img.src = url;
+    },
+    renderMap: function(dataURL) {
+      $("#mapc").css("background-image", "url(" + dataURL + ")");
       return $("#overlay").show();
+    },
+    postRender: function() {
+      var apiKey, forceSerer, forceServer, storageResponse, storageResponseTime, timeDifference, url;
+      apiKey = "AIzaSyBf1n3GL-Kv1e4He0qkluxKpiCfrOWYVvI";
+      url = "https://maps.googleapis.com/maps/api/staticmap?center=" + this.model.geoLocation.coords.latitude + "," + this.model.geoLocation.coords.longitude + "&scale=2&maptype=satellite&size=640x640&zoom=15&key=" + apiKey;
+      forceServer = true;
+      if (Modernizr.localstorage) {
+        storageResponse = localStorage.getItem("MapImage");
+        storageResponseTime = localStorage.getItem("MapImageTime");
+        if (storageResponse && storageResponseTime) {
+          timeDifference = new Date().getTime() - storageResponseTime;
+          if (timeDifference < 604800000) {
+            forceSerer = false;
+            this.renderMap(storageResponse);
+          }
+        }
+      }
+      if (forceServer) {
+        return this.convertImgToBase64URL(url, function(dataURL) {
+          if (Modernizr.localstorage) {
+            localStorage.setItem("MapImage", dataURL);
+            localStorage.setItem("MapImageTime", new Date().getTime());
+          }
+          return this.renderMap(dataURL);
+        });
+      }
     }
   });
 

@@ -1,6 +1,6 @@
 {
   "name": "easy-weather-chrome-tab",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "HTML5, Coffeescript, HAML, Backbone based weather app that utilizes geolocation to provide current weather conditions and forecasts.",
   "main": "app/assets/js/init.coffee",
   "scripts": {
